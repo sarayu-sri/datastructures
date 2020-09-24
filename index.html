@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="HandheldFriendly" content="true">
+        <title>C++ Documentation</title>
+        <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+        <nav id="navbar">
+            <header>Data Structures</header>
+            <ul>
+                <li><a class="nav-link" href="#linked_lists">Linked Lists</a></li>
+                <li><a class="nav-link" href="#nodes">Node</a></li>
+                <li><a class="nav-link" href="#inserting_nodes">Inserting nodes in a linked list</a></li>
+                <li><a class="nav-link" href="#deleting_nodes">Deleting nodes in a linked list</a></li>
+                <li><a class="nav-link" href="#stacks">Stacks</a></li>
+                <li><a class="nav-link" href="#stack_applications">Applications of Stack</a></li>
+                <li><a class="nav-link" href="#stack_operations">Stack Operations</a></li>
+                <li><a class="nav-link" href="#queue">Queues</a></li>
+                <li><a class="nav-link" href="#queue_applications">Applications of Queue</a></li>
+                <li><a class="nav-link" href="#queue_operations">Queue Operations</a></li>
+            </ul>
+        </nav>
+        <main id="main-doc">
+            <section class="main-section" id="linked_lists">
+                <header>Linked Lists</header>
+                <article>
+                    <strong>Linked List</strong> is a list of elements(containing data) in which the elements are linked together. Each data is connected (or linked) to a different data and thus, forming a linear list of data, and this is a linked list. Since data in a linked list are stored in a linear fashion, a linked list is a linear data structure. We know that we have to connect data of a linked list and to do so, we put our data in nodes and these nodes are connected in the desired fashion.
+                </article>
+            </section>
+            <section class="main-section" id="nodes">
+                <header>Node</header>
+                <article>
+                    A node can be viewed as a container or a box which contains data and other information in it. Nodes are connected (or organized) in a specific way to make data structures like linked lists.
+                    <ul>
+                        <li>Each node has two parts, one stores the data and another is connected to a different node. The last node is not connected to any other node and thus, its connection to the next node is null.</li>
+                        <li>In a linked list, a node is connected to a different node forming a chain of nodes.</li>
+                    </ul>
+                    <img src="node1.JPG">
+                    <ul>
+                        <li>Thus to make a linked list, we first need to make a node which should store some data into it and also a link to another node.</li>
+                    </ul>
+                    <img src="node2.JPG">
+                    <ul>
+                    <li>A node should store some data and a connection to a different node. For this, structure is used to store this information, and to store the connection, we can simply store the address of the node which it will be linked to.</li>
+                    </ul>
+                    <img src="xnode.JPG">
+                    <code>
+    struct node {
+        int data;
+        struct node *next;
+      };
+                    </code>
+                    Here's a C program to make two nodes and connect one with another.
+                    <code>
+    #include <stdio.h>
+        #include <stdlib.h>
+        
+        struct node {
+            int data;
+            struct node *next;
+        };
+        
+        int main() {
+            struct node *a, *b;
+            a = malloc(sizeof(struct node));
+            b = malloc(sizeof(struct node));
+        
+            a->data = 10;
+            b->data = 20;
+        
+            a->next = b;
+            b->next = NULL;
+        
+            printf("%d\n%d\n",a->data, a->next->data);
+            return 0;
+    
+                    </code>
+                </article>
+            </section>
+            <section class="main-section" id="inserting_nodes">
+                <article>
+                    There can be three different positions where a new node can be inserted.
+                    <ul>
+                        <li>At the beginning of the list.</li>
+                        <li>At the end of the list.</li>
+                        <li>Anywhere in between the other nodes.</li>
+                    </ul>
+                    <h2>Inserting a new node at the beginning of a linked list</h2>
+                    <ul>
+                        <li>First, the node(n) and the linked list(L) are passed to the function.</li>
+                        <li>After this, the next of the node is pointed to the head of the linked list.</li>
+                    </ul>
+                    <img src="b1node.JPG">
+                    <ul>
+                        <li>Since the head should always point to the first element of the linked list, so we change the head to point to the new node.</li>
+                    </ul>
+                    <img src="b2node.JPG">
+                    <h2>Inserting a new node at the end of a linked list</h2>
+                    <ul>
+                        <li>
+                            To insert a node at the end of a linked list, iterate to the last of the linked list and add a new node there.
+                        </li>
+                        <li>First pass the linked list and node to the function, iterate it to the last of the linked list and add a node there.</li>
+                    </ul>
+                    <h2>Inserting a new node in the middle of the linked list</h2>
+                    <ul>
+                        <li>To insert a new node in the middle of a linked list, we need to break the existing links and create new links.</li>
+                    </ul>
+                    <img src="m1node.JPG">
+                    <ul>
+                        <li>We start by passing the node(n) and the node after which we are going to insert this node</li>
+                        <li>Next of the new node is pointed to the next of the node <em>a</em>.</li>
+                    </ul>
+                    <img src="m2node.JPG">
+                </article>
+            </section>
+            <section class="main-section" id="deleting_nodes">
+                <article>
+                    <h2>Deleting nodes in a linked list</h2>
+                    A node in a linked list is deleted by connecting the predecessor node of the node to be deleted by the successor of the node.
+                    <ul>
+                        <li>If the node that is to be deleted is the head of the linked list, then update the head pointer.</li>
+                    </ul>
+                    <img src="d1node.JPG">
+                    <ul>
+                        <li>Otherwise, iterate to the node previous to the node n and then link the node previous of the node to be deleted to the next of it.</li>
+                    </ul>
+                    <img src="d2node.JPG">
+                </article>
+            </section>
+            <section class="main-section" id="stacks">
+                <article>
+                    <header>Stack</header>
+                    <p>A stack is an Abstract data type in which the most recently added item is removed first. It works on LIFO(Last-in, First-out) policy.</p>
+                    <section class="main-section" id="stack_applications">
+                        <p>Some real world applications of stack are:</p>
+                        <ul>
+                            <li>Plates on a tray.</li>
+                            <li>Shipment in a cargo.</li>
+                            <li>Stack of coins.</li>
+                            <li>Stack of drawers.</li>
+                        </ul>
+                    </section>
+                    <p>A stack supports few basic operations. They are:</p>
+                </article>
+            </section>
+            <section class="main-section" id="stack_operations">
+                <article>
+                    <h2>Push():</h2>
+                    <p>The push operation adds a new element to the stack. As stated above, any element added to the stack goes at the top, so push adds an element at the top of a stack.</p>
+                    <h2>Pop():</h2>
+                    <p>The pop operation removes and also returns the top-most (or most recent element) from the stack.</p>
+                    <h2>Top():</h2>
+                    <p>The Top operations only returns (doesn’t remove) the top-most element of a stack.</p>
+                    <h2>isEmpty():</h2>
+                    <p>This operation checks whether a stack is empty or not i.e., if there is any element present in the stack or not.</p>
+                    <h2>isFull():</h2>
+                    <p>This operation checks whether a stack is full or not.</p>
+                </article>
+            </section>
+            <section class="main-section" id="queue">
+                <article>
+                    <header>Queue</header>
+                    <p>Similar to stacks, a queue is also an Abstract Data Type or ADT. A queue follows FIFO (First-in, First-out) policy. It is equivalent to the queues in our general life. For example, a new person enters a queue at the last and the person who is at the front (who must have entered the queue at first) will be served first.</p>
+                    <img src="q1.JPG">
+                    <section class="main-section" id="queue_applications">
+                        <p>Some real world examples of queue are:</p>
+                        <ul>
+                            <li>Cashier line in any store.</li>
+                            <li>People on an escalator.</li>
+                            <li>Checkout at any book store.</li>
+                        </ul>
+                    </section>
+                    <p>Similar to stack, queue supports few basic operations. They are:</p>
+                    </article>
+            </section>
+                    <section class="main-section" id="queue_operations">
+                    <article>
+                    <h2>Enqueue():</h2>
+                    <p>Enqueue is an operation which adds an element to the queue. As stated earlier, any new item enters at the tail of the queue, so Enqueue adds an item to the tail of a queue.</p>
+                    <h2>Dequeue():</h2>
+                    <p> Enqueue is an operation which adds an element to the queue. As stated earlier, any new item enters at the tail of the queue, so Enqueue adds an item to the tail of a queue.</p>
+                    <h2>Front():</h2>
+                    <p> Enqueue is an operation which adds an element to the queue. As stated earlier, any new item enters at the tail of the queue, so Enqueue adds an item to the tail of a queue.</p>
+                    <h2>isEmpty():</h2>
+                    <p> It is used to check whether the queue has any element or not.</p>
+                    <h2>isFull():</h2>
+                    <p> It is used to check whether the queue has any element or not.</p>
+                </article>
+            </section>
+        </main>
+    </body>
+</html>
