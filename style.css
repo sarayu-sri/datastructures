@@ -124,7 +124,7 @@ html, body {
     }
   
     #navbar {
-      background-color: slategrey;
+      background-color: rgb(48, 13, 13);
       position: absolute;
       top: 0;
       padding: 0;
